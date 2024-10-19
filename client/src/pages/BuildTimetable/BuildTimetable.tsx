@@ -11,8 +11,13 @@ import { useAccountContext } from "@/context";
 import { useNavigate } from "react-router-dom";
 import { scheduledEventToCalendarBlock } from "@/utils";
 import "./BuildTimetable.style.scss";
+import { Divider } from "@/layouts/Central/Divider";
 
 function BuildTimetable() {
+  const [timetableName, setTimetableName] = useState('timetable');
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTimetableName(e.target.value);
+};
   const { jwt } = useAccountContext();
   const [scheduledEvents, setScheduledEvents] = useState<ScheduledEvent[]>([]);
   const [selectedEvents, setSelectedEvents] = useState<ScheduledEvent[]>([]);
@@ -25,12 +30,15 @@ function BuildTimetable() {
 
   const createTimetable = async () => {
     const result = await ServiceAPI.createTimetable(
-      new Date().toISOString(),
+      timetableName,
       selectedEvents.map((event) => event.id.toString()),
       jwt,
     );
-
+    const timetablemyData = {
+      name: timetableName,
+    };
     navigate(`/timetables/${result.data.id}`);
+    console.log('Created a timetable with info of ', timetablemyData)
   };
 
   const addEvent = (event: ScheduledEvent) => {
@@ -42,6 +50,7 @@ function BuildTimetable() {
   };
 
   return (
+    
     <Layout title={"My Course Worksheet"}>
       <div className="BuildTimetable">
         <Section title="Search">
@@ -62,6 +71,18 @@ function BuildTimetable() {
               removeEvent={removeEvent}
               createTimetable={createTimetable}
             />
+            <div>
+            <h2>Save timetable as:</h2>
+              {/* Input for the timetable name */}
+            <label htmlFor="timetableName">Timetable Name:</label>
+            <input
+                type="text"
+                id="timetableName"
+                value={timetableName}
+                onChange={handleNameChange}
+            />
+            <button onClick={createTimetable}>Save Timetable</button>
+          </div>
           </Section>
         )}
         <Section title="Draft Timetable">
@@ -73,7 +94,7 @@ function BuildTimetable() {
         </Section>
       </div>
     </Layout>
-  );
-}
+  )
+};
 
 export default BuildTimetable;

@@ -1,80 +1,106 @@
+/* Blurred background for the Login screen */
 .Login {
   width: 100%;
   height: 100vh;
-  background-color: inherit;
-  background-repeat: no-repeat;
+  background-image: url("/carleton-login-page-bg.jpg");
   background-size: cover;
-  -webkit-background-size: cover;
-  background-image: url("/carleton_background.jpg");
-  font-size: 0.9em;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; 
+}
 
-  &__panel {
-    width: 31.25rem;
-    height: 100vh;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    right: 0;
+.Login__panel {
+  width: 40rem;
+  height: 20rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; 
+}
 
-    img {
-      padding-top: 5.625rem;
-      max-width: 100%;
-      margin-bottom: 3.75rem;
+.Login__panel__button {
+  width: 100%;
+  cursor: pointer; 
+  background-color: white;
+  border-color: black;
+  border-radius: 4px;
+
+   margin-top: 1rem;
+   padding: 0.75rem;
+
+}
+
+
+.Login__panel__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  img {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+
+  &__message {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+
+    a {
+      color: #2672ec;
+      font-weight: bold;
+      text-decoration: none;
     }
+  }
 
-    &__button {
-      border: none;
-      background-color: rgb(38, 114, 236);
-      color: rgb(255, 255, 255);
-      padding: 0.25rem 1.25rem 0.375rem 1.25rem;
-      cursor: pointer;
-      font-size: 0.9rem;
+  &__input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
 
-      &:hover {
-        background: rgb(212, 227, 251);
-      }
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
     }
+  }
 
-    &__content {
-      min-height: 100%;
-      height: auto;
-      margin: 0 auto 0 auto;
-      padding: 0rem 6.25rem 0rem 3.125rem;
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
 
-      &__message {
-        margin-bottom: 1.875rem;
-        font-size: 0.9em;
+    input {
+      margin-right: 0.5rem;
+    }
+  }
 
-        a {
-          color: #2672ec;
-          text-decoration: none;
-          background-color: transparent;
-          font-weight: bold;
-        }
-      }
+  &__button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
-      &__input {
-        display: flex;
-        flex-direction: column;
-        gap: 0.625rem;
-        input {
-          width: 100%;
-          height: 28px;
-          padding: 0px 3px 0px 3px;
-          border: solid 1px #bababa;
-          font-size: 0.9rem;
-        }
-      }
-
-      &__checkbox {
-        font-size: 0.9rem;
-        margin-top: 0.625rem;
-        margin-bottom: 2.375rem;
-        input {
-          margin: auto 0;
-          margin-right: 0.25rem;
-        }
-      }
+    &:hover {
+      background-color: #c82333;
     }
   }
 }

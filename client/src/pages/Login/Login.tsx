@@ -7,7 +7,7 @@ function Login() {
   const [message, setMessage] = useState(null);
   const { login } = useAccountContext();
 
-  const attemptLogin = async () => {
+  const attemptLogin = async () => { //test
     try {
       const message = await login("admin@email.com", "password");
       setMessage(message);
@@ -23,7 +23,7 @@ function Login() {
         <div className="Login__panel__content">
           <img src="/carleton_logo_black.png"></img>
           <div className="Login__panel__content__message">
-            <div>Welcome to the Carleton SSO Federated Portal.</div>
+            <div>Welcome to the Carleton SSO çawdawdwd</div>
             <div>
               Enter your{" "}
               <a href="https://myone.carleton.ca" target="blank">
